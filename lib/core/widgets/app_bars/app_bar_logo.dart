@@ -59,7 +59,7 @@ class AppBarLogo extends StatelessWidget implements PreferredSizeWidget {
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
             onPressed: onActionPressed,
-            icon: SvgPicture.asset(IconPath.plusAppBar),
+            icon: SvgPicture.asset(IconPath.plusAppBar, width: 24.r, height: 24.r,),
           ),
           LogoAppBarType.logoWithTextButton => TextButton(
             onPressed: onActionPressed,
