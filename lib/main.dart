@@ -1,5 +1,6 @@
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
+import 'package:dotori/core/widgets/app_bars/app_bar_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -75,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBarLogo.logoWithPlusButton(onActionPressed: (){},),
+      appBar: AppBarBack.backWithTextButton(buttonText: '둘러보기', onActionPressed: (){}),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
