@@ -1,12 +1,14 @@
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
+import 'package:dotori/core/widgets/app_bars/app_bar_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/constants/app_sizes.dart';
 import 'core/themes/app_theme.dart';
 import 'core/utils/screen_util_service.dart';
-import 'core/widgets/custom_elevated_button.dart';
+import 'core/widgets/app_bars/app_bar_logo.dart';
+import 'core/widgets/buttons/custom_elevated_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -74,15 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      appBar: AppBarBack.backWithTextButton(buttonText: '둘러보기', onActionPressed: (){}),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
