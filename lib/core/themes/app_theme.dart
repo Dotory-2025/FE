@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData kThemeData = ThemeData(
     primaryColor: AppColors.primary,
-    cardColor: AppColors.gray100,
-    scaffoldBackgroundColor: AppColors.gray100,
+    cardColor: AppColors.background,
+    scaffoldBackgroundColor: AppColors.background,
     splashFactory: NoSplash.splashFactory,
     highlightColor: Colors.transparent,
-
-    ///textTheme: textTheme,
     fontFamily: 'PretendardVariable',
     appBarTheme: kAppAppBarTheme,
+    elevatedButtonTheme: kElevatedButtonThemeData,
     useMaterial3: true,
   );
 
@@ -22,4 +21,20 @@ class AppTheme {
     scrolledUnderElevation: 0,
     titleSpacing: AppSizes.defaultPadding,
   );
+
+  ///ElevatedButton 테마
+  static ElevatedButtonThemeData kElevatedButtonThemeData =
+  ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size.zero,
+        padding: EdgeInsets.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        elevation: 0,
+        overlayColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.radiusMD),
+        ),
+      ));
+
 }
