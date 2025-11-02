@@ -107,7 +107,7 @@ extension AppTextStyles on TextTheme {
   );
 
   /// TimeText
-  TextStyle get caption2 => TextStyle(
+  TextStyle get timeText => TextStyle(
     letterSpacing: 0,
     height: 18 / 10,
     fontSize: 10.sp,
