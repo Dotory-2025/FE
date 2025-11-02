@@ -83,6 +83,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/icons/app_bar/
+    - assets/icons/bottom_app_bar/
     - assets/icons/list_tile/
     - assets/icons/search_bar/
     - assets/icons/toast/

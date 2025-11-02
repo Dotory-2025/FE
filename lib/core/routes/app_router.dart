@@ -1,4 +1,5 @@
 import 'package:dotori/core/constants/paths/route_path.dart';
+import 'package:dotori/core/widgets/scaffolds/custom_scaffold.dart';
 import 'package:dotori/feature/auth/presentation/views/auth_code_screen.dart';
 import 'package:dotori/feature/auth/presentation/views/auth_info_screen.dart';
 import 'package:dotori/feature/auth/presentation/views/auth_mail_screen.dart';
@@ -8,10 +9,14 @@ import 'package:dotori/feature/auth/presentation/views/image_cropper_screen.dart
 import 'package:dotori/feature/auth/presentation/views/onboarding_screen.dart';
 import 'package:dotori/feature/auth/presentation/views/terms_agreement_screen.dart';
 import 'package:dotori/feature/auth/presentation/views/tutorial_screen.dart';
+import 'package:dotori/feature/chatting/presentation/chatting_screen.dart';
+import 'package:dotori/feature/home/presentation/views/home_screen.dart';
+import 'package:dotori/feature/notification/presentation/notification_screen.dart';
+import 'package:dotori/feature/setting/presentation/setting_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RoutePath.onboarding,
+  initialLocation: RoutePath.home,
   routes: [
     GoRoute(
       path: RoutePath.onboarding,
@@ -49,5 +54,35 @@ final GoRouter appRouter = GoRouter(
       path: RoutePath.tutorial,
       builder: (context, state) => const TutorialScreen(),
     ),
+    StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) => CustomScaffold(
+          navigationShell: navigationShell,
+        ),
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: RoutePath.home,
+              builder: (context, state) => HomeScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: RoutePath.chatting,
+              builder: (context, state) => ChattingScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: RoutePath.notification,
+              builder: (context, state) => NotificationScreen(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: RoutePath.setting,
+              builder: (context, state) => SettingScreen(),
+            ),
+          ])
+        ]),
   ],
 );
