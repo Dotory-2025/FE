@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../constants/icon_path.dart';
+import '../../constants/paths/icon_path.dart';
 
 enum BackAppBarType {
   back,
@@ -81,6 +81,7 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       titleSpacing:
           type == BackAppBarType.backWithProfile &&
               type == BackAppBarType.backWithProfiles

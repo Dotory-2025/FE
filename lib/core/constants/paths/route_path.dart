@@ -5,4 +5,7 @@ abstract class RoutePath {
   static const String authInfo = '/authInfo';
   static const String authRoutine = '/authRoutine';
   static const String authProfile = '/authProfile';
+  static const String imageCropper = '/imageCropper';
+  static const String termsAgreement = '/termsAgreement';
+  static const String tutorial = '/tutorial';
 }

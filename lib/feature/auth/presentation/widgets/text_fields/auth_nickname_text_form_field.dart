@@ -13,7 +13,6 @@ class AuthNicknameTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
-      autofocus: true,
       cursorColor: AppColors.gray500,
       cursorWidth: 2.w,
       cursorRadius: Radius.circular(1.r),

@@ -6,11 +6,17 @@ abstract class IconPath {
   static const String cancelSearchBar = 'assets/icons/search_bar/cancel.svg';
   static const String searchSearchBar = 'assets/icons/search_bar/search.svg';
 
+  static const String checkBoxOff = 'assets/icons/list_tile/check_box_off.svg';
+  static const String checkBoxOn = 'assets/icons/list_tile/check_box_on.svg';
   static const String closeListTile = 'assets/icons/list_tile/close.svg';
+
+  static const String warningToast = 'assets/icons/toast/warning.svg';
 
   static const String dropdown = 'assets/icons/dropdown.svg';
   static const String go = 'assets/icons/go.svg';
   static const String info = 'assets/icons/info.svg';
+  static const String profile = 'assets/icons/profile.svg';
+  static const String circlePlus = 'assets/icons/circle_plus.svg';
 
   static const String maeji = 'assets/icons/maeji.svg';
   static const String saeyeon = 'assets/icons/saeyeon.svg';
