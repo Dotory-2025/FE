@@ -1,5 +1,6 @@
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/constants/app_sizes.dart';
+import 'package:dotori/core/constants/paths/route_path.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
 import 'package:dotori/core/widgets/app_bars/app_bar_logo.dart';
@@ -10,6 +11,7 @@ import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class TutorialScreen extends HookWidget {
   const TutorialScreen({super.key});
@@ -61,7 +63,7 @@ class TutorialScreen extends HookWidget {
                 height: 60.h,
                 width: double.infinity,
                 onPressed: () {
-
+                  context.go(RoutePath.home);
                 },
                 textStyle: context.textStyles.btnText,
                 radius: AppSizes.radiusMD,

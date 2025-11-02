@@ -21,4 +21,11 @@ abstract class IconPath {
   static const String maeji = 'assets/icons/maeji.svg';
   static const String saeyeon = 'assets/icons/saeyeon.svg';
   static const String chungyeon = 'assets/icons/chungyeon.svg';
+
+  static const String homeActivate = 'assets/icons/bottom_app_bar/home_activate.svg';
+  static const String homeDisable = 'assets/icons/bottom_app_bar/home_disable.svg';
+  static const String chattingActivate = 'assets/icons/bottom_app_bar/chatting_activate.svg';
+  static const String chattingDisable = 'assets/icons/bottom_app_bar/chatting_disable.svg';
+  static const String notificationActivate = 'assets/icons/bottom_app_bar/notification_activate.svg';
+  static const String notificationDisable = 'assets/icons/bottom_app_bar/notification_disable.svg';
 }

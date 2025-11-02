@@ -96,6 +96,15 @@ extension AppTextStyles on TextTheme {
     ],
   );
 
+  TextStyle get label2 => TextStyle(
+    letterSpacing: (10.sp * 0.40 / 100).w,
+    fontSize: 10.sp,
+    height: 12 / 10,
+    fontVariations: const <FontVariation>[
+      FontVariation('wght', 600),
+    ],
+  );
+
   /// Caption
   TextStyle get caption1 => TextStyle(
     letterSpacing: (12.sp * 0.20 / 100).w,

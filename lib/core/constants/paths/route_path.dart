@@ -8,4 +8,9 @@ abstract class RoutePath {
   static const String imageCropper = '/imageCropper';
   static const String termsAgreement = '/termsAgreement';
   static const String tutorial = '/tutorial';
+
+  static const String home = '/home';
+  static const String chatting = '/chatting';
+  static const String notification = '/notification';
+  static const String setting = '/setting';
 }
