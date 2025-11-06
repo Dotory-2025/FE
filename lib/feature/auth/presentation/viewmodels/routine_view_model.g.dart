@@ -20,7 +20,7 @@ final class RoutineViewModelProvider
         argument: null,
         retry: null,
         name: r'routineViewModelProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -41,7 +41,7 @@ final class RoutineViewModelProvider
   }
 }
 
-String _$routineViewModelHash() => r'ee052858b1720b51132570cd9da6078bdd865bd1';
+String _$routineViewModelHash() => r'e6e3796474d11c76a1784d16100da94b309ab69a';
 
 abstract class _$RoutineViewModel extends $Notifier<RoutineState> {
   RoutineState build();

@@ -26,7 +26,7 @@ enum RoutineCategory {
   drinking,
 }
 
-extension RoutineCategoryLabel on RoutineCategory {
+extension RoutineCategoryExtension on RoutineCategory {
   String get label => switch (this) {
     RoutineCategory.smoking => '흡연자 🚬',
     RoutineCategory.snoring => '코골이 👃',

@@ -133,7 +133,6 @@ class AuthInfoScreen extends HookConsumerWidget {
               SizedBox(height: 4.h),
               Visibility(
                 visible: isCheckNickname.value ? true : false,
-                // 항상 공간 차지
                 maintainSize: true,
                 maintainAnimation: true,
                 maintainState: true,
@@ -206,7 +205,8 @@ class AuthInfoScreen extends HookConsumerWidget {
                 height: 60.h,
                 width: double.infinity,
                 onPressed:
-                    ref.read(authViewModelProvider.notifier).isInfoFilled()
+                    ref.read(authViewModelProvider.notifier).isInfoFilled() &&
+                        !isDuplication
                     ? () {
                         context.push(RoutePath.authRoutine);
                       }

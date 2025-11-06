@@ -1,21 +1,29 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/constants/paths/icon_path.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
+import 'package:dotori/core/utils/custom_cache_manager.dart';
+import 'package:dotori/feature/setting/data/models/my_info_response.dart';
+import 'package:dotori/feature/setting/presentation/viewmodels/setting_view_model.dart';
+import 'package:dotori/feature/setting/presentation/viewmodels/states/setting_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CustomScaffold extends HookWidget {
+class CustomScaffold extends HookConsumerWidget {
   final StatefulNavigationShell navigationShell;
 
   const CustomScaffold({super.key, required this.navigationShell});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = useState(navigationShell.currentIndex);
+    final SettingState settingState = ref.watch(settingViewModelProvider);
+    MyInfoResponse myInfoResponse = settingState.myInfo!;
 
     void onTapNav(int index) {
       navigationShell.goBranch(index);
@@ -85,7 +93,7 @@ class CustomScaffold extends HookWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(height: 6.h,),
+                            SizedBox(height: 6.h),
                             if (index == 3)
                               SizedBox(
                                 width: 32.r,
@@ -96,7 +104,12 @@ class CustomScaffold extends HookWidget {
                                     backgroundColor: AppColors.primary,
                                     child: CircleAvatar(
                                       radius: isActive ? 9.25.r : 10.r,
-                                      backgroundColor: AppColors.gray200,
+                                      backgroundColor: AppColors.background,
+                                      backgroundImage:
+                                          CachedNetworkImageProvider(
+                                            myInfoResponse.profileImage,
+                                            cacheManager: CustomCacheManager(),
+                                          ),
                                     ),
                                   ),
                                 ),
@@ -115,7 +128,7 @@ class CustomScaffold extends HookWidget {
                                     : AppColors.gray200,
                               ),
                             ),
-                            SizedBox(height: 6.h,),
+                            SizedBox(height: 6.h),
                           ],
                         ),
                       ),

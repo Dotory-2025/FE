@@ -8,19 +8,36 @@ import 'package:dotori/core/widgets/app_bars/app_bar_back.dart';
 import 'package:dotori/core/widgets/buttons/custom_elevated_button.dart';
 import 'package:dotori/feature/auth/presentation/viewmodels/auth_view_model.dart';
 import 'package:dotori/feature/auth/presentation/viewmodels/states/auth_state.dart';
+import 'package:dotori/feature/setting/presentation/viewmodels/edit_user_view_model.dart';
+import 'package:dotori/feature/setting/presentation/viewmodels/states/edit_user_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+enum ImageCropperType { auth, edit }
+
 class ImageCropperScreen extends ConsumerWidget {
+  final ImageCropperType type;
   final GlobalKey _cropperKey = GlobalKey(debugLabel: 'cropperKey');
 
-  ImageCropperScreen({super.key});
+  ImageCropperScreen({super.key, required this.type});
+
+  factory ImageCropperScreen.auth() =>
+      ImageCropperScreen(type: ImageCropperType.auth);
+
+  factory ImageCropperScreen.edit() =>
+      ImageCropperScreen(type: ImageCropperType.edit);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AuthState authState = ref.watch(authViewModelProvider);
+    final EditUserState editUserState = ref.watch(editUserViewModelProvider);
+    final Uint8List? imageBytes = switch (type) {
+      ImageCropperType.auth => authState.profileImage,
+      ImageCropperType.edit => editUserState.profileImage,
+    };
+
     return Scaffold(
       appBar: AppBarBack.back(),
       body: SafeArea(
@@ -31,16 +48,10 @@ class ImageCropperScreen extends ConsumerWidget {
               child: Cropper(
                 overlayType: OverlayType.circle,
                 cropperKey: _cropperKey,
-                image: Image.memory(authState.profileImage!),
-                onScaleStart: (details) {
-                  // todo: define started action.
-                },
-                onScaleUpdate: (details) {
-                  // todo: define updated action.
-                },
-                onScaleEnd: (details) {
-                  // todo: define ended action.
-                },
+                image: Image.memory(
+                  imageBytes!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Positioned(
@@ -52,16 +63,26 @@ class ImageCropperScreen extends ConsumerWidget {
                 width: double.infinity,
                 text: '이미지 선택하기',
                 onPressed: () async {
-                  Uint8List? profileImage = await Cropper.crop(
+                  final Uint8List? cropped = await Cropper.crop(
                     cropperKey: _cropperKey,
                   );
-                  if (profileImage != null) {
-                    ref
-                        .read(authViewModelProvider.notifier)
-                        .setCroppedProfileImage(profileImage);
-                    if (!context.mounted) return;
-                    context.pop();
+
+                  if (cropped == null) return;
+                  switch (type) {
+                    case ImageCropperType.auth:
+                      ref
+                          .read(authViewModelProvider.notifier)
+                          .setCroppedProfileImage(cropped);
+                      break;
+                    case ImageCropperType.edit:
+                      ref
+                          .read(editUserViewModelProvider.notifier)
+                          .setCroppedProfileImage(cropped);
+                      break;
                   }
+
+                  if (!context.mounted) return;
+                  context.pop();
                 },
                 textStyle: context.textStyles.btnText,
                 radius: AppSizes.radiusMD,

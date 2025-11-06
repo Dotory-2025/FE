@@ -54,6 +54,8 @@ dependencies:
   carousel_slider: ^5.1.1
   expandable_page_view: ^1.0.17
   logger: ^2.6.2
+  cached_network_image: ^3.4.1
+  flutter_cache_manager: ^3.4.1
 
 
 dev_dependencies:
@@ -89,6 +91,7 @@ flutter:
     - assets/icons/toast/
     - assets/images/
     - assets/animations/
+    - assets/mocks/
 
   fonts:
     - family: PretendardVariable

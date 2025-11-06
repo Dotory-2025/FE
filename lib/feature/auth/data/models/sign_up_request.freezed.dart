@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignUpRequest {
 
- String get email; String get nickName; int get studentNumber; String get dormitory; String get gender; List<String> get routine;
+ String get email; String get nickName; int get studentNumber; String get dormitory; String get gender; List<String> get routines;
 /// Create a copy of SignUpRequest
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SignUpRequestCopyWith<SignUpRequest> get copyWith => _$SignUpRequestCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpRequest&&(identical(other.email, email) || other.email == email)&&(identical(other.nickName, nickName) || other.nickName == nickName)&&(identical(other.studentNumber, studentNumber) || other.studentNumber == studentNumber)&&(identical(other.dormitory, dormitory) || other.dormitory == dormitory)&&(identical(other.gender, gender) || other.gender == gender)&&const DeepCollectionEquality().equals(other.routine, routine));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpRequest&&(identical(other.email, email) || other.email == email)&&(identical(other.nickName, nickName) || other.nickName == nickName)&&(identical(other.studentNumber, studentNumber) || other.studentNumber == studentNumber)&&(identical(other.dormitory, dormitory) || other.dormitory == dormitory)&&(identical(other.gender, gender) || other.gender == gender)&&const DeepCollectionEquality().equals(other.routines, routines));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,email,nickName,studentNumber,dormitory,gender,const DeepCollectionEquality().hash(routine));
+int get hashCode => Object.hash(runtimeType,email,nickName,studentNumber,dormitory,gender,const DeepCollectionEquality().hash(routines));
 
 @override
 String toString() {
-  return 'SignUpRequest(email: $email, nickName: $nickName, studentNumber: $studentNumber, dormitory: $dormitory, gender: $gender, routine: $routine)';
+  return 'SignUpRequest(email: $email, nickName: $nickName, studentNumber: $studentNumber, dormitory: $dormitory, gender: $gender, routines: $routines)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SignUpRequestCopyWith<$Res>  {
   factory $SignUpRequestCopyWith(SignUpRequest value, $Res Function(SignUpRequest) _then) = _$SignUpRequestCopyWithImpl;
 @useResult
 $Res call({
- String email, String nickName, int studentNumber, String dormitory, String gender, List<String> routine
+ String email, String nickName, int studentNumber, String dormitory, String gender, List<String> routines
 });
 
 
@@ -65,14 +65,14 @@ class _$SignUpRequestCopyWithImpl<$Res>
 
 /// Create a copy of SignUpRequest
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? nickName = null,Object? studentNumber = null,Object? dormitory = null,Object? gender = null,Object? routine = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? nickName = null,Object? studentNumber = null,Object? dormitory = null,Object? gender = null,Object? routines = null,}) {
   return _then(_self.copyWith(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,nickName: null == nickName ? _self.nickName : nickName // ignore: cast_nullable_to_non_nullable
 as String,studentNumber: null == studentNumber ? _self.studentNumber : studentNumber // ignore: cast_nullable_to_non_nullable
 as int,dormitory: null == dormitory ? _self.dormitory : dormitory // ignore: cast_nullable_to_non_nullable
 as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as String,routine: null == routine ? _self.routine : routine // ignore: cast_nullable_to_non_nullable
+as String,routines: null == routines ? _self.routines : routines // ignore: cast_nullable_to_non_nullable
 as List<String>,
   ));
 }
@@ -158,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String email,  String nickName,  int studentNumber,  String dormitory,  String gender,  List<String> routine)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String email,  String nickName,  int studentNumber,  String dormitory,  String gender,  List<String> routines)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignUpRequest() when $default != null:
-return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_that.gender,_that.routine);case _:
+return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_that.gender,_that.routines);case _:
   return orElse();
 
 }
@@ -179,10 +179,10 @@ return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String email,  String nickName,  int studentNumber,  String dormitory,  String gender,  List<String> routine)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String email,  String nickName,  int studentNumber,  String dormitory,  String gender,  List<String> routines)  $default,) {final _that = this;
 switch (_that) {
 case _SignUpRequest():
-return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_that.gender,_that.routine);case _:
+return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_that.gender,_that.routines);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +199,10 @@ return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String email,  String nickName,  int studentNumber,  String dormitory,  String gender,  List<String> routine)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String email,  String nickName,  int studentNumber,  String dormitory,  String gender,  List<String> routines)?  $default,) {final _that = this;
 switch (_that) {
 case _SignUpRequest() when $default != null:
-return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_that.gender,_that.routine);case _:
+return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_that.gender,_that.routines);case _:
   return null;
 
 }
@@ -214,7 +214,7 @@ return $default(_that.email,_that.nickName,_that.studentNumber,_that.dormitory,_
 @JsonSerializable()
 
 class _SignUpRequest implements SignUpRequest {
-  const _SignUpRequest({required this.email, required this.nickName, required this.studentNumber, required this.dormitory, required this.gender, required final  List<String> routine}): _routine = routine;
+  const _SignUpRequest({required this.email, required this.nickName, required this.studentNumber, required this.dormitory, required this.gender, required final  List<String> routines}): _routines = routines;
   factory _SignUpRequest.fromJson(Map<String, dynamic> json) => _$SignUpRequestFromJson(json);
 
 @override final  String email;
@@ -222,11 +222,11 @@ class _SignUpRequest implements SignUpRequest {
 @override final  int studentNumber;
 @override final  String dormitory;
 @override final  String gender;
- final  List<String> _routine;
-@override List<String> get routine {
-  if (_routine is EqualUnmodifiableListView) return _routine;
+ final  List<String> _routines;
+@override List<String> get routines {
+  if (_routines is EqualUnmodifiableListView) return _routines;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_routine);
+  return EqualUnmodifiableListView(_routines);
 }
 
 
@@ -243,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpRequest&&(identical(other.email, email) || other.email == email)&&(identical(other.nickName, nickName) || other.nickName == nickName)&&(identical(other.studentNumber, studentNumber) || other.studentNumber == studentNumber)&&(identical(other.dormitory, dormitory) || other.dormitory == dormitory)&&(identical(other.gender, gender) || other.gender == gender)&&const DeepCollectionEquality().equals(other._routine, _routine));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpRequest&&(identical(other.email, email) || other.email == email)&&(identical(other.nickName, nickName) || other.nickName == nickName)&&(identical(other.studentNumber, studentNumber) || other.studentNumber == studentNumber)&&(identical(other.dormitory, dormitory) || other.dormitory == dormitory)&&(identical(other.gender, gender) || other.gender == gender)&&const DeepCollectionEquality().equals(other._routines, _routines));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,email,nickName,studentNumber,dormitory,gender,const DeepCollectionEquality().hash(_routine));
+int get hashCode => Object.hash(runtimeType,email,nickName,studentNumber,dormitory,gender,const DeepCollectionEquality().hash(_routines));
 
 @override
 String toString() {
-  return 'SignUpRequest(email: $email, nickName: $nickName, studentNumber: $studentNumber, dormitory: $dormitory, gender: $gender, routine: $routine)';
+  return 'SignUpRequest(email: $email, nickName: $nickName, studentNumber: $studentNumber, dormitory: $dormitory, gender: $gender, routines: $routines)';
 }
 
 
@@ -263,7 +263,7 @@ abstract mixin class _$SignUpRequestCopyWith<$Res> implements $SignUpRequestCopy
   factory _$SignUpRequestCopyWith(_SignUpRequest value, $Res Function(_SignUpRequest) _then) = __$SignUpRequestCopyWithImpl;
 @override @useResult
 $Res call({
- String email, String nickName, int studentNumber, String dormitory, String gender, List<String> routine
+ String email, String nickName, int studentNumber, String dormitory, String gender, List<String> routines
 });
 
 
@@ -280,14 +280,14 @@ class __$SignUpRequestCopyWithImpl<$Res>
 
 /// Create a copy of SignUpRequest
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? nickName = null,Object? studentNumber = null,Object? dormitory = null,Object? gender = null,Object? routine = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? nickName = null,Object? studentNumber = null,Object? dormitory = null,Object? gender = null,Object? routines = null,}) {
   return _then(_SignUpRequest(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,nickName: null == nickName ? _self.nickName : nickName // ignore: cast_nullable_to_non_nullable
 as String,studentNumber: null == studentNumber ? _self.studentNumber : studentNumber // ignore: cast_nullable_to_non_nullable
 as int,dormitory: null == dormitory ? _self.dormitory : dormitory // ignore: cast_nullable_to_non_nullable
 as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as String,routine: null == routine ? _self._routine : routine // ignore: cast_nullable_to_non_nullable
+as String,routines: null == routines ? _self._routines : routines // ignore: cast_nullable_to_non_nullable
 as List<String>,
   ));
 }

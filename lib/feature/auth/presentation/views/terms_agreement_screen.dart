@@ -124,6 +124,7 @@ class TermsAgreementScreen extends HookConsumerWidget {
                           await ref
                               .read(authViewModelProvider.notifier)
                               .signUp();
+                          ref.invalidate(authViewModelProvider);
                           if(!context.mounted) return;
                           context.go(RoutePath.tutorial);
                         }

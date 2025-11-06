@@ -16,6 +16,7 @@ enum BackAppBarType {
   backWithProfiles,
   backWithSearchBar,
   backWithTextButton,
+  backWithTextButtonGray,
   backWithDotButton,
 }
 
@@ -70,6 +71,16 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
     buttonText: buttonText,
     onActionPressed: onActionPressed,
   );
+
+  factory AppBarBack.backWithTextButtonGray({
+    required String buttonText,
+    required VoidCallback? onActionPressed,
+  }) =>
+      AppBarBack(
+        type: BackAppBarType.backWithTextButtonGray,
+        buttonText: buttonText,
+        onActionPressed: onActionPressed,
+      );
 
   factory AppBarBack.backWithDotButton({
     required VoidCallback onActionPressed,
@@ -177,6 +188,7 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
         BackAppBarType.backWithTextButton => SizedBox.shrink(),
+        BackAppBarType.backWithTextButtonGray => SizedBox.shrink(),
         BackAppBarType.backWithDotButton => SizedBox.shrink(),
       },
       actions: [
@@ -211,6 +223,14 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
                 color: AppColors.gray200,
               ),
             ),
+          ),
+          BackAppBarType.backWithTextButtonGray => TextButton(
+            onPressed: onActionPressed,
+            style: TextButton.styleFrom(
+              foregroundColor: AppColors.gray500,
+              disabledForegroundColor: AppColors.gray200,
+            ),
+            child: Text(buttonText!, style: context.textStyles.btnText,),
           ),
           BackAppBarType.backWithDotButton => IconButton(
             padding: EdgeInsets.zero,
