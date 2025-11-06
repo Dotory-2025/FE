@@ -13,7 +13,7 @@ _SignUpRequest _$SignUpRequestFromJson(Map<String, dynamic> json) =>
       studentNumber: (json['studentNumber'] as num).toInt(),
       dormitory: json['dormitory'] as String,
       gender: json['gender'] as String,
-      routine: (json['routine'] as List<dynamic>)
+      routines: (json['routines'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
     );
@@ -25,5 +25,5 @@ Map<String, dynamic> _$SignUpRequestToJson(_SignUpRequest instance) =>
       'studentNumber': instance.studentNumber,
       'dormitory': instance.dormitory,
       'gender': instance.gender,
-      'routine': instance.routine,
+      'routines': instance.routines,
     };

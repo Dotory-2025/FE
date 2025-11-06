@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthNicknameTextFormField extends StatelessWidget {
   final TextEditingController textEditingController;
+  final String? hintText;
 
-  const AuthNicknameTextFormField({super.key, required this.textEditingController});
+  const AuthNicknameTextFormField({super.key, required this.textEditingController, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class AuthNicknameTextFormField extends StatelessWidget {
         focusedBorder: InputBorder.none,
         enabledBorder: InputBorder.none,
         contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
-        hintText: '도토리',
+        hintText: hintText ?? '도토리',
         hintStyle: context.textStyles.headLine1.copyWith(
           color: AppColors.gray200,
         ),

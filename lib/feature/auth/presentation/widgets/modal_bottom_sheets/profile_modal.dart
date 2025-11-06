@@ -35,7 +35,7 @@ class ProfileModal extends ConsumerWidget {
                 authViewModel.setProfileImage(profileImage);
                 if (!context.mounted) return;
                 context.pop();
-                context.push(RoutePath.imageCropper);
+                context.push(RoutePath.imageCropperAuth);
               }
             },
           ),
@@ -52,7 +52,7 @@ class ProfileModal extends ConsumerWidget {
                 authViewModel.setProfileImage(profileImage);
                 if (!context.mounted) return;
                 context.pop();
-                context.push(RoutePath.imageCropper);
+                context.push(RoutePath.imageCropperAuth);
               }
             },
           ),

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "profileImage": "https://i.namu.wiki/i/kWsh82Z14Oq_5IAIg7Mc30xu99qa0HQbTPPiSO7dHjlmr980qR1GQ33ZAnOjqAzhPMKogVLpIDnIMbWbBiCLaw.webp",
+    "nickName": "투홀리스",
+    "studentNumber": "24"
+  },
+  {
+    "id": 2,
+    "profileImage": "https://i.namu.wiki/i/ZbFUg1kuzELzuHGroiO2MqEaHTIwcDGjZ6FJTQkRSBoBIka-6uyVz30DHzg6r6jeveuBqLP-p4749YW55UBnmg.webp",
+    "nickName": "시스템 서울",
+    "studentNumber": "25"
+  },
+  {
+    "id": 3,
+    "profileImage": "https://image.bugsm.co.kr/artist/images/200/120013/12001345.jpg?version=20250328143437",
+    "nickName": "에피",
+    "studentNumber": "22"
+  },
+  {
+    "id": 4,
+    "profileImage": "https://t1.daumcdn.net/brunch/service/user/8eM/image/aVIe_FAppTjHgIBbhRc3USoRslA.jpg",
+    "nickName": "스크릴렉스",
+    "studentNumber": "20"
+  },
+  {
+    "id": 5,
+    "profileImage": "https://i.namu.wiki/i/kHgK3d9M-6owagOYGY6lA6KrSYj52ZwR_Af3MbNExWT-paD1hmTSZbwZkXyhzVXQEFh5SW0_NO1pOKlHR1baXQ.webp",
+    "nickName": "일리아 토푸리아",
+    "studentNumber": "23"
+  },
+  {
+    "id": 6,
+    "profileImage": "https://i.namu.wiki/i/qgSeEWyJwQKwumTdbG27cMgZigMajvdiek6ct-9P3EH_ITn-eHwSTKA587JbwgFPfRaOE1yLDnSCHFhOLUg61Q.webp",
+    "nickName": "함자트 치마예프",
+    "studentNumber": "21"
+  },
+  {
+    "id": 7,
+    "profileImage": "https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2023%2F11%2Fnew-ufc-light-heavyweight-champion-alex-pereira-ft.jpg?w=960&cbr=1&q=90&fit=max",
+    "nickName": "알렉스 페레이라",
+    "studentNumber": "21"
+  },
+  {
+    "id": 8,
+    "profileImage": "https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2023%2F03%2Fconor-mcgregor-says-breaking-leg-never-stopping-this-ft-01.jpeg?q=75&w=800&cbr=1&fit=max",
+    "nickName": "코너 맥그리거",
+    "studentNumber": "22"
+  },
+  {
+    "id": 9,
+    "profileImage": "https://i.namu.wiki/i/Qqp6fRcBtqYPeKKYUUgoSAX0N66Hx2vzAoqQBfgr5yFTntmELiZCSWGhJQ3aji4biMqqPU2hln-ENnkdnSOKHQ.webp",
+    "nickName": "스타보이",
+    "studentNumber": "24"
+  },
+  {
+    "id": 10,
+    "profileImage": "https://i.namu.wiki/i/Njfx6sR0dbVlPvSGnetWnc6MZ7Jmixxu3jVfUNTjg1I6EuTteF-PBuYAqfzjShoMuGG9e_gIk0oJk7dIrFqD5A.webp",
+    "nickName": "몰리 산타나",
+    "studentNumber": "25"
+  }
+]

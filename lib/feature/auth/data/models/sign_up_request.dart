@@ -11,7 +11,7 @@ abstract class SignUpRequest with _$SignUpRequest {
     required int studentNumber,
     required String dormitory,
     required String gender,
-    required List<String> routine,
+    required List<String> routines,
 
   }) = _SignUpRequest;
 

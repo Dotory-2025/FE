@@ -1,0 +1,80 @@
+[
+  {
+    "dormitory": "maeji",
+    "year": "매지학사 2025 2학기",
+    "feedbacks": [
+      {
+        "id": 1,
+        "profileImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTMLRX89kSPHI2MZimR3N4j12ERjZMILekoQ&s",
+        "nickName": "플레이보이 카티",
+        "tags": [
+          "#취식금지",
+          "#비흡연자",
+          "#내향적",
+          "#불규칙적 수면"
+        ]
+      },
+      {
+        "id": 2,
+        "profileImage": "https://i.namu.wiki/i/9tAqJZKbTgHm5v4V6om1nhN8lswsGjpz7Cxd6afIinnJAC1jPxT-_DJgb_z04ifsiz4ADJCtJysEfTAw9kPZbg.webp",
+        "nickName": "디스트로이 론리",
+        "tags": [
+          "#취식금지",
+          "#비흡연자",
+          "#내향적",
+          "#불규칙적 수면"
+        ]
+      },
+      {
+        "id": 3,
+        "profileImage": "https://i.namu.wiki/i/3vk1kMoTD6T63wFTQLLU7p0C8LkDQnGVEWk_8O_Zb5KjnwaJIUIfOUUWS3LKm6gCT6_O2DoY56RJMwZXV2gkEQ.webp",
+        "nickName": "홈싸 갱",
+        "tags": [
+          "#취식금지",
+          "#비흡연자",
+          "#내향적",
+          "#불규칙적 수면"
+        ]
+      }
+    ]
+  },
+  {
+    "dormitory": "maeji",
+    "year": "매지학사 2025 1학기",
+    "feedbacks": [
+      {
+        "id": 4,
+        "profileImage": "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/es/2025/06/22/PS25062200060.jpg",
+        "nickName": "존 존스",
+        "tags": [
+          "#취식금지",
+          "#비흡연자",
+          "#내향적",
+          "#불규칙적 수면"
+        ]
+      },
+      {
+        "id": 5,
+        "profileImage": "https://i1.ruliweb.com/img/25/10/26/19a1f88987d47c0ad.jpg",
+        "nickName": "톰 아스피날",
+        "tags": [
+          "#취식금지",
+          "#비흡연자",
+          "#내향적",
+          "#불규칙적 수면"
+        ]
+      },
+      {
+        "id": 5,
+        "profileImage": "https://mblogthumb-phinf.pstatic.net/20130526_67/storycreate_1369521906432ic34q_JPEG/2013-05-26_07%3B44%3B43.jpg?type=w800",
+        "nickName": "테렌스 크로포드",
+        "tags": [
+          "#취식금지",
+          "#비흡연자",
+          "#내향적",
+          "#불규칙적 수면"
+        ]
+      }
+    ]
+  }
+]

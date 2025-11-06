@@ -58,14 +58,14 @@ class AuthViewModel extends _$AuthViewModel {
   Future<void> signUp() async {
     final RoutineViewModel routineViewModel = ref.read(routineViewModelProvider.notifier);
     final SignUpUseCase signUpUseCase = ref.read(signUpUseCaseProvider);
-    signUpUseCase.call(
+    await signUpUseCase.call(
       SignUpRequest(
         email: state.email!,
         nickName: state.nickName!,
         studentNumber: state.studentNumber!,
         dormitory: state.dormitory!,
         gender: state.gender!,
-        routine: routineViewModel.getRoutineAsCodes(),
+        routines: routineViewModel.getRoutineAsCodes(),
       ),
     );
   }

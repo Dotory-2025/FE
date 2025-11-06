@@ -14,9 +14,13 @@ abstract class IconPath {
 
   static const String dropdown = 'assets/icons/dropdown.svg';
   static const String go = 'assets/icons/go.svg';
+  static const String goSM = 'assets/icons/go_sm.svg';
+  static const String goXS = 'assets/icons/go_xs.svg';
   static const String info = 'assets/icons/info.svg';
+  static const String infoDark = 'assets/icons/info_dark.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String circlePlus = 'assets/icons/circle_plus.svg';
+  static const String people = 'assets/icons/people.svg';
 
   static const String maeji = 'assets/icons/maeji.svg';
   static const String saeyeon = 'assets/icons/saeyeon.svg';
