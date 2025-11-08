@@ -21,4 +21,8 @@ abstract class RoutePath {
   static const String editRoutine = '/editRoutine';
   static const String myFeedbacks = '/myFeedbacks';
   static const String myInfo = '/myInfo';
+
+  static const String directMessage = '/directMessage';
+  static const String groupMessage = '/groupMessage';
+  static const String imageDetail = '/imageDetail';
 }
