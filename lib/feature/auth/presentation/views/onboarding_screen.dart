@@ -15,6 +15,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBarLogo.logoWithTextButton(
         onActionPressed: () {
           /// --- 🧱 둘러보기 라우팅

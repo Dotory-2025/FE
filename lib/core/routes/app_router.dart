@@ -10,6 +10,9 @@ import 'package:dotori/feature/auth/presentation/views/onboarding_screen.dart';
 import 'package:dotori/feature/auth/presentation/views/terms_agreement_screen.dart';
 import 'package:dotori/feature/auth/presentation/views/tutorial_screen.dart';
 import 'package:dotori/feature/chatting/presentation/views/chatting_screen.dart';
+import 'package:dotori/feature/chatting/presentation/views/direct_message_screen.dart';
+import 'package:dotori/feature/chatting/presentation/views/group_message_screen.dart';
+import 'package:dotori/feature/chatting/presentation/views/image_detail_screen.dart';
 import 'package:dotori/feature/home/presentation/views/home_screen.dart';
 import 'package:dotori/feature/notification/presentation/views/notification_screen.dart';
 import 'package:dotori/feature/setting/presentation/views/blocked_user_screen.dart';
@@ -20,10 +23,12 @@ import 'package:dotori/feature/setting/presentation/views/my_feedbacks_screen.da
 import 'package:dotori/feature/setting/presentation/views/my_info_screen.dart';
 import 'package:dotori/feature/setting/presentation/views/my_posts_screen.dart';
 import 'package:dotori/feature/setting/presentation/views/setting_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RoutePath.setting,
+  initialLocation: RoutePath.chatting,
   routes: [
     GoRoute(
       path: RoutePath.onboarding,
@@ -98,43 +103,107 @@ final GoRouter appRouter = GoRouter(
       path: RoutePath.myInfo,
       builder: (context, state) {
         final extra = state.extra;
-        final int tabIndex = (extra is Map<String, dynamic> &&
-            extra['tabIndex'] is int)
+        final int tabIndex =
+            (extra is Map<String, dynamic> && extra['tabIndex'] is int)
             ? extra['tabIndex'] as int
             : 0;
 
         return MyInfoScreen(initialTabIndex: tabIndex);
       },
     ),
+    GoRoute(
+      path: '${RoutePath.directMessage}/:id',
+      builder: (context, state) {
+        final String? idString = state.pathParameters['id'];
+        final int id = int.tryParse(idString ?? '') ?? 0;
+        final extra = state.extra as Map<String, dynamic>?;
+
+        final String? nickName = extra?['nickName'];
+        final String? profileImage = extra?['profileImage'];
+        return DirectMessageScreen(
+          id: id,
+          nickName: nickName!,
+          profileImage: profileImage!,
+        );
+      },
+    ),
+    GoRoute(
+      path: '${RoutePath.groupMessage}/:id',
+      builder: (context, state) {
+        final String? idString = state.pathParameters['id'];
+        final int id = int.tryParse(idString ?? '') ?? 0;
+        final extra = state.extra as Map<String, dynamic>?;
+
+        final String? roomName = extra?['roomName'];
+        final String? profileImage1 = extra?['profileImage1'];
+        final String? profileImage2 = extra?['profileImage2'];
+        return GroupMessageScreen(
+          id: id,
+          roomName: roomName!,
+          profileImage1: profileImage1!,
+          profileImage2: profileImage2!,
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePath.imageDetail,
+      pageBuilder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        return CustomTransitionPage(
+          key: state.pageKey,
+          opaque: false,
+          barrierColor: Colors.transparent,
+          transitionDuration: const Duration(milliseconds: 200),
+          reverseTransitionDuration: const Duration(milliseconds: 200),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          child: ImageDetailScreen(
+            nickname: extra['nickname'],
+            timeStamp: extra['timeStamp'],
+            profileImage: extra['profileImage'],
+            imageUrl: extra['imageUrl'],
+          ),
+        );
+      },
+    ),
     StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) => CustomScaffold(
-          navigationShell: navigationShell,
-        ),
-        branches: [
-          StatefulShellBranch(routes: [
+      builder: (context, state, navigationShell) =>
+          CustomScaffold(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: RoutePath.home,
               builder: (context, state) => HomeScreen(),
             ),
-          ]),
-          StatefulShellBranch(routes: [
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: RoutePath.chatting,
               builder: (context, state) => ChattingScreen(),
             ),
-          ]),
-          StatefulShellBranch(routes: [
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: RoutePath.notification,
               builder: (context, state) => NotificationScreen(),
             ),
-          ]),
-          StatefulShellBranch(routes: [
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: RoutePath.setting,
               builder: (context, state) => SettingScreen(),
             ),
-          ])
-        ]),
+          ],
+        ),
+      ],
+    ),
   ],
 );

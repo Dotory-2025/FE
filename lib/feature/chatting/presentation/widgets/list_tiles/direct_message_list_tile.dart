@@ -6,19 +6,21 @@ import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
 import 'package:dotori/core/utils/custom_cache_manager.dart';
 import 'package:dotori/feature/chatting/data/models/direct_message_response.dart';
+import 'package:dotori/feature/chatting/presentation/viewmodels/chatting_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DirectMessageListTile extends StatelessWidget {
+class DirectMessageListTile extends ConsumerWidget {
   final DirectMessageResponse directMessageResponse;
 
   const DirectMessageListTile({super.key, required this.directMessageResponse});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
         context.push(
           '${RoutePath.directMessage}/${directMessageResponse.id}',
           extra: {
@@ -26,6 +28,7 @@ class DirectMessageListTile extends StatelessWidget {
             'profileImage': directMessageResponse.profileImage,
           },
         );
+        await ref.read(chattingViewModelProvider.notifier).markAsDmRead(directMessageResponse.id);
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -73,7 +76,7 @@ class DirectMessageListTile extends StatelessWidget {
                       ),
                       SizedBox(width: 6.w),
 
-                      /// --- 🧱 시간 계산 로직
+                      /// --- 🧱 시간 포메팅 로직
                       Text(
                         '10분 전',
                         style: context.textStyles.body3.copyWith(

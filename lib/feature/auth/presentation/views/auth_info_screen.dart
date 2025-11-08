@@ -26,6 +26,7 @@ class AuthInfoScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController textEditingController =
         useTextEditingController();
+    final FocusNode focusNode = useFocusNode();
 
     final ValueNotifier<bool> isFilled = useState(false);
     final ValueNotifier<bool> isCheckNickname = useState(false);
@@ -66,156 +67,165 @@ class AuthInfoScreen extends HookConsumerWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBarBack.back(),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomPercentIndicatioer(
-                percent: 3 / 4,
-                height: 2.h,
-                borderRadius: 2.r,
-              ),
-              SizedBox(height: 42.h),
-              Text(
-                '프로필 설정',
-                style: context.textStyles.headLine1.copyWith(
-                  color: AppColors.gray500,
+        child: GestureDetector(
+          onTap: () {
+            focusNode.unfocus();
+          },
+          behavior: HitTestBehavior.translucent,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSizes.defaultPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomPercentIndicatioer(
+                  percent: 3 / 4,
+                  height: 2.h,
+                  borderRadius: 2.r,
                 ),
-              ),
-              SizedBox(height: 4.h),
-              Text(
-                '다른 사용자가 회원님을 알 수 있도록 설정해주세요!',
-                style: context.textStyles.body1.copyWith(
-                  color: AppColors.gray400,
-                ),
-              ),
-              SizedBox(height: 62.h),
-              Text(
-                '닉네임',
-                style: context.textStyles.body1.copyWith(
-                  color: AppColors.gray500,
-                ),
-              ),
-              SizedBox(height: 4.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: AuthNicknameTextFormField(
-                      textEditingController: textEditingController,
-                    ),
+                SizedBox(height: 42.h),
+                Text(
+                  '프로필 설정',
+                  style: context.textStyles.headLine1.copyWith(
+                    color: AppColors.gray500,
                   ),
-                  TextButton(
-                    onPressed: isFilled.value && !isCheckNickname.value
-                        ? () {
-                            /// --- 🧱 중복확인 로직
-                            isCheckNickname.value = true;
-                            ref
-                                .read(authViewModelProvider.notifier)
-                                .setNickname(textEditingController.text);
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                  '다른 사용자가 회원님을 알 수 있도록 설정해주세요!',
+                  style: context.textStyles.body1.copyWith(
+                    color: AppColors.gray400,
+                  ),
+                ),
+                SizedBox(height: 62.h),
+                Text(
+                  '닉네임',
+                  style: context.textStyles.body1.copyWith(
+                    color: AppColors.gray500,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: AuthNicknameTextFormField(
+                        focusNode: focusNode,
+                        textEditingController: textEditingController,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: isFilled.value && !isCheckNickname.value
+                          ? () {
+                              /// --- 🧱 중복확인 로직
+                              isCheckNickname.value = true;
+                              ref
+                                  .read(authViewModelProvider.notifier)
+                                  .setNickname(textEditingController.text);
+                            }
+                          : null,
+                      style: ButtonStyle(
+                        foregroundColor: WidgetStateProperty.resolveWith<Color>((
+                          states,
+                        ) {
+                          if (states.contains(WidgetState.disabled)) {
+                            return AppColors.gray200;
                           }
-                        : null,
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.resolveWith<Color>((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.disabled)) {
-                          return AppColors.gray200;
+                          return AppColors.gray500;
+                        }),
+                      ),
+                      child: Text('중복확인', style: context.textStyles.btnText),
+                    ),
+                    SizedBox(width: 4.w),
+                  ],
+                ),
+                SizedBox(height: 4.h),
+                Visibility(
+                  visible: isCheckNickname.value ? true : false,
+                  maintainSize: true,
+                  maintainAnimation: true,
+                  maintainState: true,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Text(
+                      isDuplication ? '중복된 닉네임 입니다.' : '사용 가능한 닉네임입니다.',
+                      style: context.textStyles.body3.copyWith(
+                        color: isDuplication
+                            ? AppColors.error
+                            : AppColors.green200,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Text(
+                  '학번 선택',
+                  style: context.textStyles.body1.copyWith(
+                    color: AppColors.gray500,
+                  ),
+                ),
+                SizedBox(height: 6.h),
+                CustomDropdownButton(
+                  title: studentNumber,
+                  textColor: isStudentNumberSelected
+                      ? AppColors.gray500
+                      : AppColors.gray200,
+                  onPressed: () {
+                    focusNode.unfocus();
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => StudentNumberModal(),
+                    );
+                  },
+                ),
+                SizedBox(height: 32.h),
+                Text(
+                  '선호학사 선택',
+                  style: context.textStyles.body1.copyWith(
+                    color: AppColors.gray500,
+                  ),
+                ),
+                SizedBox(height: 6.h),
+                CustomDropdownButton(
+                  title: domitory,
+                  textColor: isDormitorySelected
+                      ? AppColors.gray500
+                      : AppColors.gray200,
+                  onPressed: () {
+                    focusNode.unfocus();
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => DormitoryModal(),
+                    );
+                  },
+                ),
+                SizedBox(height: 32.h),
+                Text(
+                  '성별',
+                  style: context.textStyles.body1.copyWith(
+                    color: AppColors.gray500,
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                GenderToggle(),
+                Spacer(),
+                CustomElevatedButton.primary(
+                  text: '작성완료',
+                  height: 60.h,
+                  width: double.infinity,
+                  onPressed:
+                      ref.read(authViewModelProvider.notifier).isInfoFilled() &&
+                          !isDuplication
+                      ? () {
+                          context.push(RoutePath.authRoutine);
                         }
-                        return AppColors.gray500;
-                      }),
-                    ),
-                    child: Text('중복확인', style: context.textStyles.btnText),
-                  ),
-                  SizedBox(width: 4.w),
-                ],
-              ),
-              SizedBox(height: 4.h),
-              Visibility(
-                visible: isCheckNickname.value ? true : false,
-                maintainSize: true,
-                maintainAnimation: true,
-                maintainState: true,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 4.w),
-                  child: Text(
-                    isDuplication ? '중복된 닉네임 입니다.' : '사용 가능한 닉네임입니다.',
-                    style: context.textStyles.body3.copyWith(
-                      color: isDuplication
-                          ? AppColors.error
-                          : AppColors.green200,
-                    ),
-                  ),
+                      : null,
+                  textStyle: context.textStyles.btnText,
+                  radius: AppSizes.radiusMD,
                 ),
-              ),
-              SizedBox(height: 32.h),
-              Text(
-                '학번 선택',
-                style: context.textStyles.body1.copyWith(
-                  color: AppColors.gray500,
-                ),
-              ),
-              SizedBox(height: 6.h),
-              CustomDropdownButton(
-                title: studentNumber,
-                textColor: isStudentNumberSelected
-                    ? AppColors.gray500
-                    : AppColors.gray200,
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => StudentNumberModal(),
-                  );
-                },
-              ),
-              SizedBox(height: 32.h),
-              Text(
-                '선호학사 선택',
-                style: context.textStyles.body1.copyWith(
-                  color: AppColors.gray500,
-                ),
-              ),
-              SizedBox(height: 6.h),
-              CustomDropdownButton(
-                title: domitory,
-                textColor: isDormitorySelected
-                    ? AppColors.gray500
-                    : AppColors.gray200,
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => DormitoryModal(),
-                  );
-                },
-              ),
-              SizedBox(height: 32.h),
-              Text(
-                '성별',
-                style: context.textStyles.body1.copyWith(
-                  color: AppColors.gray500,
-                ),
-              ),
-              SizedBox(height: 12.h),
-              GenderToggle(),
-              Spacer(),
-              CustomElevatedButton.primary(
-                text: '작성완료',
-                height: 60.h,
-                width: double.infinity,
-                onPressed:
-                    ref.read(authViewModelProvider.notifier).isInfoFilled() &&
-                        !isDuplication
-                    ? () {
-                        context.push(RoutePath.authRoutine);
-                      }
-                    : null,
-                textStyle: context.textStyles.btnText,
-                radius: AppSizes.radiusMD,
-              ),
-              SizedBox(height: 16.h),
-            ],
+                SizedBox(height: 16.h),
+              ],
+            ),
           ),
         ),
       ),

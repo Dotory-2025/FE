@@ -31,6 +31,7 @@ class CustomScaffold extends HookConsumerWidget {
     }
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       extendBody: true,
       body: SafeArea(
         child: Stack(

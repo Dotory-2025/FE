@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/constants/app_sizes.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
+import 'package:dotori/core/utils/custom_cache_manager.dart';
 import 'package:dotori/core/widgets/search_bars/custom_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +26,8 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
   final BackAppBarType type;
   final VoidCallback? onActionPressed;
   final String? title;
+  final String? profileImage1;
+  final String? profileImage2;
   final String? buttonText;
   final TextEditingController? textEditingController;
 
@@ -32,6 +36,8 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
     required this.type,
     this.onActionPressed,
     this.title,
+    this.profileImage1,
+    this.profileImage2,
     this.buttonText,
     this.textEditingController,
   });
@@ -40,19 +46,25 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
 
   factory AppBarBack.backWithProfile({
     required String title,
+    required String profileImage1,
     required VoidCallback onActionPressed,
   }) => AppBarBack(
     type: BackAppBarType.backWithProfile,
     title: title,
+    profileImage1: profileImage1,
     onActionPressed: onActionPressed,
   );
 
   factory AppBarBack.backWithProfiles({
     required String title,
+    required String profileImage1,
+    required String profileImage2,
     required VoidCallback onActionPressed,
   }) => AppBarBack(
     type: BackAppBarType.backWithProfiles,
     title: title,
+    profileImage1: profileImage1,
+    profileImage2: profileImage2,
     onActionPressed: onActionPressed,
   );
 
@@ -75,12 +87,11 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
   factory AppBarBack.backWithTextButtonGray({
     required String buttonText,
     required VoidCallback? onActionPressed,
-  }) =>
-      AppBarBack(
-        type: BackAppBarType.backWithTextButtonGray,
-        buttonText: buttonText,
-        onActionPressed: onActionPressed,
-      );
+  }) => AppBarBack(
+    type: BackAppBarType.backWithTextButtonGray,
+    buttonText: buttonText,
+    onActionPressed: onActionPressed,
+  );
 
   factory AppBarBack.backWithDotButton({
     required VoidCallback onActionPressed,
@@ -122,7 +133,13 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
             CircleAvatar(
               radius: 16.r,
               backgroundColor: AppColors.background,
-              child: CircleAvatar(backgroundColor: AppColors.gray200),
+              child: CircleAvatar(
+                backgroundColor: AppColors.background,
+                backgroundImage: CachedNetworkImageProvider(
+                  profileImage1!,
+                  cacheManager: CustomCacheManager(),
+                ),
+              ),
             ),
             SizedBox(width: 6.w),
             Expanded(
@@ -140,8 +157,8 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
         BackAppBarType.backWithProfiles => Row(
           children: [
             SizedBox(
-              width: 41.r,
-              height: 36.r,
+              width: 38.r,
+              height: 38.r,
               child: Stack(
                 children: [
                   Positioned(
@@ -149,18 +166,30 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
                     left: 0,
                     child: CircleAvatar(
                       radius: 16.r,
-                      backgroundColor: AppColors.gray200,
+                      backgroundColor: AppColors.background,
+                      child: CircleAvatar(
+                        radius: 14.r,
+                        backgroundColor: AppColors.gray200,
+                        backgroundImage: CachedNetworkImageProvider(
+                          profileImage2!,
+                          cacheManager: CustomCacheManager(),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: CircleAvatar(
-                      radius: 18.r,
+                      radius: 16.r,
                       backgroundColor: AppColors.background,
                       child: CircleAvatar(
-                        radius: 16.r,
-                        backgroundColor: AppColors.gray200,
+                        radius: 14.r,
+                        backgroundColor: AppColors.background,
+                        backgroundImage: CachedNetworkImageProvider(
+                          profileImage1!,
+                          cacheManager: CustomCacheManager(),
+                        ),
                       ),
                     ),
                   ),
@@ -230,7 +259,7 @@ class AppBarBack extends StatelessWidget implements PreferredSizeWidget {
               foregroundColor: AppColors.gray500,
               disabledForegroundColor: AppColors.gray200,
             ),
-            child: Text(buttonText!, style: context.textStyles.btnText,),
+            child: Text(buttonText!, style: context.textStyles.btnText),
           ),
           BackAppBarType.backWithDotButton => IconButton(
             padding: EdgeInsets.zero,

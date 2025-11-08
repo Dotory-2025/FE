@@ -6,13 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthNicknameTextFormField extends StatelessWidget {
   final TextEditingController textEditingController;
+  final FocusNode? focusNode;
   final String? hintText;
 
-  const AuthNicknameTextFormField({super.key, required this.textEditingController, this.hintText});
+  const AuthNicknameTextFormField({super.key, required this.textEditingController, this.hintText, this.focusNode});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      focusNode: focusNode,
       controller: textEditingController,
       cursorColor: AppColors.gray500,
       cursorWidth: 2.w,
