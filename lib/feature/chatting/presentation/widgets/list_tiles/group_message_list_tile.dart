@@ -2,26 +2,40 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/constants/app_sizes.dart';
 import 'package:dotori/core/constants/enums/dormitory.dart';
+import 'package:dotori/core/constants/paths/route_path.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
 import 'package:dotori/core/utils/custom_cache_manager.dart';
 import 'package:dotori/feature/chatting/data/models/group_message_response.dart';
+import 'package:dotori/feature/chatting/presentation/viewmodels/chatting_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GroupMessageListTile extends StatelessWidget {
+class GroupMessageListTile extends ConsumerWidget {
   final GroupMessageResponse groupMessageResponse;
 
   const GroupMessageListTile({super.key, required this.groupMessageResponse});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final DormitoryCategory category = DomitoryExtension.fromName(
       groupMessageResponse.dormitory,
     );
 
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        context.push(
+          '${RoutePath.groupMessage}/${groupMessageResponse.id}',
+          extra: {
+            'roomName': groupMessageResponse.groupName,
+            'profileImage1': groupMessageResponse.profileImage1,
+            'profileImage2': groupMessageResponse.profileImage2,
+          },
+        );
+        await ref.read(chattingViewModelProvider.notifier).markAsGroupRead(groupMessageResponse.id);
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: AppSizes.defaultPadding,

@@ -50,22 +50,34 @@ class AuthRoutineScreen extends StatelessWidget {
                     TextSpan(
                       text: '추후 ',
                       style: context.textStyles.btnText.copyWith(
+                        letterSpacing: (20.sp * 0.20 / 100).w,
+                        height: 28 / 16,
+                        fontSize: 16.sp,
                         color: AppColors.gray400,
                         fontWeight: FontWeight.w500,
+                        fontFamily: 'PretendardVariable',
                       ),
                     ),
                     TextSpan(
                       text: '설정 → 계정설정 ',
                       style: context.textStyles.btnText.copyWith(
+                        letterSpacing: (20.sp * 0.20 / 100).w,
+                        height: 28 / 16,
+                        fontSize: 16.sp,
                         color: AppColors.gray500,
                         fontWeight: FontWeight.w600,
+                        fontFamily: 'PretendardVariable',
                       ),
                     ),
                     TextSpan(
                       text: '에서 변경할 수 있습니다.',
                       style: context.textStyles.btnText.copyWith(
+                        letterSpacing: (20.sp * 0.20 / 100).w,
+                        height: 28 / 16,
+                        fontSize: 16.sp,
                         color: AppColors.gray400,
                         fontWeight: FontWeight.w500,
+                        fontFamily: 'PretendardVariable',
                       ),
                     ),
                   ],

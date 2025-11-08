@@ -22,31 +22,28 @@
       "id": 2,
       "senderType": "opponent",
       "type": "text",
-      "content": "안녕하세요! 저도 반가워요 ㅎㅎ",
+      "content": "안녕하세요! 저도 반가워요 ㅎㅎ mma 고트 존존스라고 합니다. 저랑 룸메하면 제가 지켜드리겠습니다",
       "timeStamp": "2025-11-06T12:31:00Z"
     },
     {
       "id": 3,
       "senderType": "me",
       "type": "house_invite",
-      "houseName": "비흡연자 룸메 구해요",
+      "houseName": "소통 잘되는 룸메 구해요",
       "timeStamp": "2025-11-06T12:35:00Z"
     },
     {
       "id": 4,
       "senderType": "opponent",
       "type": "house_invite_received",
-      "houseName": "소통 잘되는 룸메 원해요",
+      "houseName": "비흡연자 룸메 구해요",
       "timeStamp": "2025-11-06T12:37:00Z"
     },
     {
       "id": 5,
       "senderType": "me",
       "type": "image",
-      "content": {
-        "imageUrl": "https://cdn.dotori.app/uploads/chat_1234.jpg",
-        "caption": "이 사진 보세요!"
-      },
+      "imageUrl": "https://i1.ruliweb.com/img/25/10/26/19a1f88987d47c0ad.jpg",
       "timeStamp": "2025-11-06T12:40:00Z"
     }
   ]

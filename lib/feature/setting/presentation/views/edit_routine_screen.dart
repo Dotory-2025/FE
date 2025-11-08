@@ -76,8 +76,8 @@ class EditRoutineScreen extends HookConsumerWidget {
               ),
               SizedBox(height: 26.h),
               Wrap(
-                spacing: 8.w, // 좌우 간격
-                runSpacing: 16.h, // 줄 간격
+                spacing: 8.w,
+                runSpacing: 16.h,
                 children: RoutineCategory.values.map((category) {
                   return RoutineToggle(category: category);
                 }).toList(),

@@ -1,0 +1,42 @@
+{
+  "id": 1,
+  "profileImage": "https://i.namu.wiki/i/kHgK3d9M-6owagOYGY6lA6KrSYj52ZwR_Af3MbNExWT-paD1hmTSZbwZkXyhzVXQEFh5SW0_NO1pOKlHR1baXQ.webp",
+  "nickName": "일리아 토푸리아",
+  "dormitory": "saeyeon",
+  "tags": [
+    "#취식금지",
+    "#비흡연자",
+    "#내향적",
+    "#불규칙적 수면"
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "senderType": "me",
+      "type": "text",
+      "content": "ㅎㅇ",
+      "timeStamp": "2025-11-06T12:30:00Z"
+    },
+    {
+      "id": 2,
+      "senderType": "opponent",
+      "type": "text",
+      "content": "우리 내일회의 있어?",
+      "timeStamp": "2025-11-06T12:31:00Z"
+    },
+    {
+      "id": 3,
+      "senderType": "me",
+      "type": "text",
+      "content": "회의 있단다",
+      "timeStamp": "2025-11-06T12:37:00Z"
+    },
+    {
+      "id": 4,
+      "senderType": "opponent",
+      "type": "text",
+      "content": "내일 회의 몇 시야?",
+      "timeStamp": "2025-11-06T12:30:00Z"
+    }
+  ]
+}

@@ -63,29 +63,45 @@ class AuthCodeScreen extends HookWidget {
                       TextSpan(
                         text: '연세메일',
                         style: context.textStyles.body1.copyWith(
+                          letterSpacing: (16.sp * -0.25 / 100).w,
+                          fontSize: 16.sp,
+                          height: 24 / 16,
                           color: AppColors.gray500,
                           fontWeight: FontWeight.w600,
+                          fontFamily: 'PretendardVariable',
                         ),
                       ),
                       TextSpan(
                         text: '로 도착한 ',
-                        style: context.textStyles.btnText.copyWith(
+                        style: context.textStyles.body1.copyWith(
+                          letterSpacing: (16.sp * -0.25 / 100).w,
+                          fontSize: 16.sp,
+                          height: 24 / 16,
                           color: AppColors.gray400,
                           fontWeight: FontWeight.w500,
+                          fontFamily: 'PretendardVariable',
                         ),
                       ),
                       TextSpan(
                         text: '인증번호',
                         style: context.textStyles.body1.copyWith(
+                          letterSpacing: (16.sp * -0.25 / 100).w,
+                          fontSize: 16.sp,
+                          height: 24 / 16,
                           color: AppColors.gray500,
                           fontWeight: FontWeight.w600,
+                          fontFamily: 'PretendardVariable',
                         ),
                       ),
                       TextSpan(
                         text: '를 입력해주세요.',
                         style: context.textStyles.body1.copyWith(
+                          letterSpacing: (16.sp * -0.25 / 100).w,
+                          fontSize: 16.sp,
+                          height: 24 / 16,
                           color: AppColors.gray400,
                           fontWeight: FontWeight.w500,
+                          fontFamily: 'PretendardVariable',
                         ),
                       ),
                     ],

@@ -37,6 +37,7 @@ class EditUserScreen extends HookConsumerWidget {
 
     final TextEditingController textEditingController =
         useTextEditingController();
+    final FocusNode focusNode = useFocusNode();
 
     final ValueNotifier<bool> isFilled = useState(false);
     final ValueNotifier<bool> isCheckNickname = useState(false);
@@ -62,6 +63,7 @@ class EditUserScreen extends HookConsumerWidget {
     }, [textEditingController]);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBarBack.backWithTextButtonGray(
         buttonText: '저장',
         onActionPressed: editUserViewModel.isInfoFilled
@@ -73,133 +75,141 @@ class EditUserScreen extends HookConsumerWidget {
             : null,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.h),
-              Center(
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
+        child: GestureDetector(
+          onTap: () {
+            focusNode.unfocus();
+          },
+          behavior: HitTestBehavior.translucent,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSizes.defaultPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 32.h),
+                Center(
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => EditProfileModal(),
+                      );
+                    },
+                    icon: Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 72.5.r,
+                          backgroundColor: AppColors.background,
+                          backgroundImage: editUserState.profileImage != null
+                              ? MemoryImage(editUserState.profileImage!)
+                              : CachedNetworkImageProvider(
+                                  myInfoResponse.profileImage,
+                                  cacheManager: CustomCacheManager(),
+                                ),
+                        ),
+                        Positioned(
+                          bottom: 4.h,
+                          right: 4.h,
+                          child: SvgPicture.asset(
+                            IconPath.circlePlus,
+                            width: 32.r,
+                            height: 32.r,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: AuthNicknameTextFormField(
+                        focusNode: focusNode,
+                        textEditingController: textEditingController,
+                        hintText: myInfoResponse.nickName,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: isFilled.value && !isCheckNickname.value
+                          ? () {
+                              /// --- 🧱 중복확인 로직
+                              isCheckNickname.value = true;
+                              ref
+                                  .read(editUserViewModelProvider.notifier)
+                                  .setNickname(textEditingController.text);
+                            }
+                          : null,
+                      style: ButtonStyle(
+                        foregroundColor: WidgetStateProperty.resolveWith<Color>((
+                          states,
+                        ) {
+                          if (states.contains(WidgetState.disabled)) {
+                            return AppColors.gray200;
+                          }
+                          return AppColors.gray500;
+                        }),
+                      ),
+                      child: Text('중복확인', style: context.textStyles.btnText),
+                    ),
+                    SizedBox(width: 4.w),
+                  ],
+                ),
+                SizedBox(height: 4.h),
+                Visibility(
+                  visible: isCheckNickname.value ? true : false,
+                  maintainSize: true,
+                  maintainAnimation: true,
+                  maintainState: true,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Text(
+                      isDuplication ? '중복된 닉네임 입니다.' : '사용 가능한 닉네임입니다.',
+                      style: context.textStyles.body3.copyWith(
+                        color: isDuplication
+                            ? AppColors.error
+                            : AppColors.green200,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                SettingListTile.goWithBadge(
+                  title: '선호학사 변경',
                   onPressed: () {
+                    focusNode.unfocus();
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      builder: (context) => EditProfileModal(),
+                      builder: (context) => EditDormitoryModal(),
                     );
                   },
-                  icon: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 72.5.r,
-                        backgroundColor: AppColors.background,
-                        backgroundImage: editUserState.profileImage != null
-                            ? MemoryImage(editUserState.profileImage!)
-                            : CachedNetworkImageProvider(
-                                myInfoResponse.profileImage,
-                                cacheManager: CustomCacheManager(),
-                              ),
-                      ),
-                      Positioned(
-                        bottom: 4.h,
-                        right: 4.h,
-                        child: SvgPicture.asset(
-                          IconPath.circlePlus,
-                          width: 32.r,
-                          height: 32.r,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
-              ),
-              SizedBox(height: 24.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: AuthNicknameTextFormField(
-                      textEditingController: textEditingController,
-                      hintText: myInfoResponse.nickName,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: isFilled.value && !isCheckNickname.value
-                        ? () {
-                            /// --- 🧱 중복확인 로직
-                            isCheckNickname.value = true;
-                            ref
-                                .read(editUserViewModelProvider.notifier)
-                                .setNickname(textEditingController.text);
-                          }
-                        : null,
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.resolveWith<Color>((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.disabled)) {
-                          return AppColors.gray200;
-                        }
-                        return AppColors.gray500;
-                      }),
-                    ),
-                    child: Text('중복확인', style: context.textStyles.btnText),
-                  ),
-                  SizedBox(width: 4.w),
-                ],
-              ),
-              SizedBox(height: 4.h),
-              Visibility(
-                visible: isCheckNickname.value ? true : false,
-                maintainSize: true,
-                maintainAnimation: true,
-                maintainState: true,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 4.w),
-                  child: Text(
-                    isDuplication ? '중복된 닉네임 입니다.' : '사용 가능한 닉네임입니다.',
-                    style: context.textStyles.body3.copyWith(
-                      color: isDuplication
-                          ? AppColors.error
-                          : AppColors.green200,
-                    ),
-                  ),
+                SizedBox(height: 8.h),
+                SettingListTile.go(
+                  title: '생활패턴 변경',
+                  onPressed: () {
+                    context.push(RoutePath.editRoutine);
+                  },
                 ),
-              ),
-              SizedBox(height: 24.h),
-              SettingListTile.goWithBadge(
-                title: '선호학사 변경',
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => EditDormitoryModal(),
-                  );
-                },
-              ),
-              SizedBox(height: 8.h),
-              SettingListTile.go(
-                title: '생활패턴 변경',
-                onPressed: () {
-                  context.push(RoutePath.editRoutine);
-                },
-              ),
-              SizedBox(height: 8.h),
-              SettingListTile.go(
-                title: '내가 쓴 피드백',
-                onPressed: () {
-                  context.push(RoutePath.myFeedbacks);
-                },
-              ),
-              Spacer(),
-              SettingListTile.go(
-                title: '탈퇴하기',
-                onPressed: () {},
-                titleColor: AppColors.gray200,
-              ),
-              SizedBox(height: 16.h),
-            ],
+                SizedBox(height: 8.h),
+                SettingListTile.go(
+                  title: '내가 쓴 피드백',
+                  onPressed: () {
+                    context.push(RoutePath.myFeedbacks);
+                  },
+                ),
+                Spacer(),
+                SettingListTile.go(
+                  title: '탈퇴하기',
+                  onPressed: () {},
+                  titleColor: AppColors.gray200,
+                ),
+                SizedBox(height: 16.h),
+              ],
+            ),
           ),
         ),
       ),
