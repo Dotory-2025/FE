@@ -1,6 +1,7 @@
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
 import 'package:dotori/core/widgets/app_bars/app_bar_back.dart';
+import 'package:dotori/features/home/presentation/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Demo',
           theme: AppTheme.kThemeData,
-          home: MyHomePage(title: 'Flutter Demo Home Page'),
+          home: HomeScreen(),
         );
       },
     );

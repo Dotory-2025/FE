@@ -8,18 +8,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-enum LogoAppBarType { logo, logoWithPlusButton, logoWithTextButton }
+enum LogoAppBarType { logo, logoWithPlusButton, logoWithTextButton, logoWithMyHouseButton }
 
 class AppBarLogo extends StatelessWidget implements PreferredSizeWidget {
   final LogoAppBarType type;
   final VoidCallback? onActionPressed;
+  final VoidCallback? onSecondActionPressed;
   final String? buttonText;
+  final String? secondButtonIcon;
 
   const AppBarLogo({
     super.key,
     required this.type,
     this.onActionPressed,
+    this.onSecondActionPressed,
     this.buttonText,
+    this.secondButtonIcon,
   });
 
   factory AppBarLogo.logo() => AppBarLogo(type: LogoAppBarType.logo);
@@ -38,6 +42,15 @@ class AppBarLogo extends StatelessWidget implements PreferredSizeWidget {
     type: LogoAppBarType.logoWithTextButton,
     onActionPressed: onActionPressed,
     buttonText: buttonText,
+  );
+
+  factory AppBarLogo.logoWithMyHouseButton({
+    required VoidCallback onFirstButtonPressed,
+    required VoidCallback onSecondButtonPressed,
+  }) => AppBarLogo(
+    type: LogoAppBarType.logoWithMyHouseButton,
+    onSecondActionPressed: onFirstButtonPressed,
+    onActionPressed: onSecondButtonPressed,
   );
 
   @override
@@ -70,6 +83,35 @@ class AppBarLogo extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+          LogoAppBarType.logoWithMyHouseButton => Row(
+            children: [
+              TextButton(onPressed: onSecondActionPressed, style: TextButton.styleFrom(
+                padding: EdgeInsets.fromLTRB(12.w, 4.h, 12.w, 4.h),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.5)
+                ),
+                backgroundColor: AppColors.gray500
+              ), child: Text(
+                '내 하우스',
+                style: context.textStyles.label1.copyWith(
+                  color: AppColors.background
+                ),
+              ),),
+              SizedBox(
+                width: 14.w,
+              ),
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: onActionPressed,
+                icon: SvgPicture.asset(
+                  IconPath.plusAppBar,
+                  width: 24.r,
+                  height: 24.r,
+                ),
+              ),
+            ],
+          )
         },
         SizedBox(width: AppSizes.defaultPadding),
       ],
