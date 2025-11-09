@@ -3,7 +3,7 @@ import 'package:dotori/core/constants/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static ThemeData kThemeData = ThemeData(
+  static ThemeData get kThemeData => ThemeData(
     primaryColor: AppColors.primary,
     cardColor: AppColors.background,
     scaffoldBackgroundColor: AppColors.background,
@@ -14,18 +14,19 @@ class AppTheme {
     elevatedButtonTheme: kElevatedButtonThemeData,
     textButtonTheme: kTextButtonThemeData,
     iconButtonTheme: kIconButtonThemeData,
+    bottomSheetTheme: kBottomSheetThemeData,
     useMaterial3: true,
   );
 
-  ///Appbar 테마
-  static AppBarTheme kAppAppBarTheme = AppBarTheme(
+  /// --- Appbar 테마
+  static AppBarTheme get kAppAppBarTheme => AppBarTheme(
     color: AppColors.background,
     scrolledUnderElevation: 0,
     titleSpacing: AppSizes.defaultPadding,
   );
 
-  ///ElevatedButton 테마
-  static ElevatedButtonThemeData kElevatedButtonThemeData =
+  /// --- ElevatedButton 테마
+  static ElevatedButtonThemeData get kElevatedButtonThemeData =>
       ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           minimumSize: Size.zero,
@@ -40,8 +41,8 @@ class AppTheme {
         ),
       );
 
-  ///TextButton 테마
-  static TextButtonThemeData kTextButtonThemeData = TextButtonThemeData(
+  /// --- TextButton 테마
+  static TextButtonThemeData get kTextButtonThemeData => TextButtonThemeData(
     style: TextButton.styleFrom(
       minimumSize: Size.zero,
       padding: EdgeInsets.zero,
@@ -50,12 +51,23 @@ class AppTheme {
     ),
   );
 
-  ///IconButton 테마
-  static IconButtonThemeData kIconButtonThemeData = IconButtonThemeData(
+  /// --- IconButton 테마
+  static IconButtonThemeData get kIconButtonThemeData => IconButtonThemeData(
     style: ButtonStyle(
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      padding: WidgetStatePropertyAll(EdgeInsets.zero),
-      overlayColor: WidgetStatePropertyAll(Colors.transparent),
+      padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+      overlayColor:
+      const WidgetStatePropertyAll(Colors.transparent),
     ),
+  );
+
+  /// --- BottomSheet 테마
+  static BottomSheetThemeData get kBottomSheetThemeData => BottomSheetThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(AppSizes.radiusMD),
+      ),
+    ),
+    backgroundColor: AppColors.background,
   );
 }

@@ -1,6 +1,6 @@
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/constants/app_sizes.dart';
-import 'package:dotori/core/constants/icon_path.dart';
+import 'package:dotori/core/constants/paths/icon_path.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
 import 'package:flutter/material.dart';

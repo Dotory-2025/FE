@@ -1,0 +1,50 @@
+{
+  "id": 1,
+  "roomName": "비흡연자 룸메 구해요",
+  "profileImage": "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/es/2025/06/22/PS25062200060.jpg",
+  "nickName": "존 존스",
+  "dormitory": "maeji",
+  "tags": [
+    "#취식금지",
+    "#비흡연자",
+    "#내향적",
+    "#불규칙적 수면"
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "senderType": "me",
+      "type": "text",
+      "content": "안녕! 반가워요 :)",
+      "timeStamp": "2025-11-06T12:30:00Z"
+    },
+    {
+      "id": 2,
+      "senderType": "opponent",
+      "type": "text",
+      "content": "안녕하세요! 저도 반가워요 ㅎㅎ mma 고트 존존스라고 합니다. 저랑 룸메하면 제가 지켜드리겠습니다",
+      "timeStamp": "2025-11-06T12:31:00Z"
+    },
+    {
+      "id": 3,
+      "senderType": "me",
+      "type": "house_invite",
+      "houseName": "소통 잘되는 룸메 구해요",
+      "timeStamp": "2025-11-06T12:35:00Z"
+    },
+    {
+      "id": 4,
+      "senderType": "opponent",
+      "type": "house_invite_received",
+      "houseName": "비흡연자 룸메 구해요",
+      "timeStamp": "2025-11-06T12:37:00Z"
+    },
+    {
+      "id": 5,
+      "senderType": "me",
+      "type": "image",
+      "imageUrl": "https://i1.ruliweb.com/img/25/10/26/19a1f88987d47c0ad.jpg",
+      "timeStamp": "2025-11-06T12:40:00Z"
+    }
+  ]
+}

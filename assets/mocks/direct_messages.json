@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "profileImage": "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/es/2025/06/22/PS25062200060.jpg",
+    "nickName": "존 존스",
+    "lastMessage": "오늘 점심 같이 먹을래?",
+    "timeStamp": "2025-11-06T12:40:00Z",
+    "isRead": false
+  },
+  {
+    "id": 2,
+    "profileImage": "https://i.namu.wiki/i/kHgK3d9M-6owagOYGY6lA6KrSYj52ZwR_Af3MbNExWT-paD1hmTSZbwZkXyhzVXQEFh5SW0_NO1pOKlHR1baXQ.webp",
+    "nickName": "일리아 토푸리아",
+    "lastMessage": "내일 회의 몇 시야?",
+    "timeStamp": "2025-11-06T10:15:00Z",
+    "isRead": false
+  },
+  {
+    "id": 3,
+    "profileImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTMLRX89kSPHI2MZimR3N4j12ERjZMILekoQ&s",
+    "nickName": "플레이보이 카티",
+    "lastMessage": "11월 30일에 중요한 일정이 있어서 연락을 남겨dddddddddddd",
+    "timeStamp": "",
+    "isRead": true
+  },
+  {
+    "id": 4,
+    "profileImage": "https://i.namu.wiki/i/kWsh82Z14Oq_5IAIg7Mc30xu99qa0HQbTPPiSO7dHjlmr980qR1GQ33ZAnOjqAzhPMKogVLpIDnIMbWbBiCLaw.webp",
+    "nickName": "투홀리스",
+    "lastMessage": "사진 잘 봤어 ㅋㅋ",
+    "timeStamp": "2025-11-05T22:30:00Z",
+    "isRead": true
+  },
+  {
+    "id": 5,
+    "profileImage": "https://i.namu.wiki/i/ZbFUg1kuzELzuHGroiO2MqEaHTIwcDGjZ6FJTQkRSBoBIka-6uyVz30DHzg6r6jeveuBqLP-p4749YW55UBnmg.webp",
+    "nickName": "시스템 서울",
+    "lastMessage": "오랜만이다!",
+    "timeStamp": "2025-11-04T18:00:00Z",
+    "isRead": true
+  }
+]
