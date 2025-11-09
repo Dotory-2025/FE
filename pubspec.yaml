@@ -59,7 +59,6 @@ dependencies:
   gallery_saver_plus: ^3.2.9
   oktoast: ^3.4.0
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
