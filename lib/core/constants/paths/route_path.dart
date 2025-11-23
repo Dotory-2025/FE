@@ -25,4 +25,9 @@ abstract class RoutePath {
   static const String directMessage = '/directMessage';
   static const String groupMessage = '/groupMessage';
   static const String imageDetail = '/imageDetail';
+
+  static const String houseTypeSelection = '/houseTypeSelection';
+  static const String conditionSetting = '/conditionSetting';
+  static const String housePostWriting = '/housePostWriting';
+  static const String houseCreationComplete = '/houseCreationComplete';
 }

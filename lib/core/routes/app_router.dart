@@ -13,6 +13,10 @@ import 'package:dotori/feature/chatting/presentation/views/chatting_screen.dart'
 import 'package:dotori/feature/chatting/presentation/views/direct_message_screen.dart';
 import 'package:dotori/feature/chatting/presentation/views/group_message_screen.dart';
 import 'package:dotori/feature/chatting/presentation/views/image_detail_screen.dart';
+import 'package:dotori/feature/create_house/presentation/views/condition_setting_screen.dart';
+import 'package:dotori/feature/create_house/presentation/views/house_creation_complete_screen.dart';
+import 'package:dotori/feature/create_house/presentation/views/house_post_writing_screen.dart';
+import 'package:dotori/feature/create_house/presentation/views/house_type_selection_screen.dart';
 import 'package:dotori/feature/home/presentation/views/home_screen.dart';
 import 'package:dotori/feature/notification/presentation/views/notification_screen.dart';
 import 'package:dotori/feature/setting/presentation/views/blocked_user_screen.dart';
@@ -28,7 +32,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RoutePath.chatting,
+  initialLocation: RoutePath.houseTypeSelection,
   routes: [
     GoRoute(
       path: RoutePath.onboarding,
@@ -109,6 +113,37 @@ final GoRouter appRouter = GoRouter(
             : 0;
 
         return MyInfoScreen(initialTabIndex: tabIndex);
+      },
+    ),
+    GoRoute(
+      path: RoutePath.houseTypeSelection,
+      builder: (context, state) => const HouseTypeSelectionScreen(),
+    ),
+    GoRoute(
+      path: RoutePath.conditionSetting,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        return ConditionSettingScreen(
+          houseType: extra['houseType'],
+          roomCount: extra['roomCount'],
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePath.housePostWriting,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        return HousePostWritingScreen(
+          houseType: extra['houseType'],
+          roomCount: extra['roomCount'],
+          selectedConditions: extra['selectedConditions'],
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePath.houseCreationComplete,
+      builder: (context, state) {
+        return const HouseCreationCompleteScreen();
       },
     ),
     GoRoute(
