@@ -4,6 +4,7 @@ import 'package:dotori/core/constants/paths/icon_path.dart';
 import 'package:dotori/core/constants/paths/route_path.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
+import 'package:dotori/core/widgets/app_bars/app_bar_back.dart';
 import 'package:dotori/feature/create_house/domain/entities/condition_type.dart';
 import 'package:dotori/feature/create_house/domain/entities/house_type.dart';
 import 'package:dotori/feature/create_house/presentation/widgets/exit_confirmation_dialog.dart';
@@ -60,40 +61,14 @@ class HousePostWritingScreen extends HookConsumerWidget {
       child: Scaffold(
         backgroundColor: AppColors.background,
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: Row(
-            children: [
-              SizedBox(width: AppSizes.defaultPadding),
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                onPressed: handleBackPress,
-                icon: SvgPicture.asset(
-                  IconPath.backAppBar,
-                  width: 24.r,
-                  height: 24.r,
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // TODO: 하우스 생성 API 호출
-                print('제목: ${titleController.text}');
-                print('내용: ${contentController.text}');
-                context.go(RoutePath.houseCreationComplete);
-              },
-              child: Text(
-                '작성하기',
-                style: context.textStyles.btnText.copyWith(
-                  color: AppColors.gray200,
-                ),
-              ),
-            ),
-            SizedBox(width: AppSizes.defaultPadding),
-          ],
+        appBar: AppBarBack.backWithTextButton(
+          buttonText: '작성하기',
+          onActionPressed: () {
+            // TODO: 하우스 생성 API 호출
+            print('제목: ${titleController.text}');
+            print('내용: ${contentController.text}');
+            context.go(RoutePath.houseCreationComplete);
+          },
         ),
         body: Column(
           children: [
@@ -229,24 +204,28 @@ class HousePostWritingScreen extends HookConsumerWidget {
     required bool isSelected,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            size: 24.r,
-            color: isSelected ? AppColors.gray500 : AppColors.gray300,
-          ),
-          SizedBox(height: 4.h),
-          Text(
-            label,
-            style: context.textStyles.caption1.copyWith(
+      borderRadius: BorderRadius.circular(8.r),
+      child: Padding(
+        padding: EdgeInsets.all(4.r),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 24.r,
               color: isSelected ? AppColors.gray500 : AppColors.gray300,
             ),
-          ),
-        ],
+            SizedBox(height: 4.h),
+            Text(
+              label,
+              style: context.textStyles.caption1.copyWith(
+                color: isSelected ? AppColors.gray500 : AppColors.gray300,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

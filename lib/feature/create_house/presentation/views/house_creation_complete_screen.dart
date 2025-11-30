@@ -1,9 +1,11 @@
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
+import 'package:dotori/core/widgets/app_bars/app_bar_back.dart';
 import 'package:dotori/core/widgets/buttons/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 /// 하우스 생성 완료 화면
@@ -14,6 +16,7 @@ class HouseCreationCompleteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      appBar: AppBarBack.back(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(24.w),
@@ -25,16 +28,19 @@ class HouseCreationCompleteScreen extends StatelessWidget {
               // 체크 아이콘
               Center(
                 child: Container(
-                  width: 80.r,
-                  height: 80.r,
+                  width: 74.r,
+                  height: 74.r,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: AppColors.gray500,
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
-                    Icons.check,
-                    color: AppColors.background,
-                    size: 48.r,
+                  child: SvgPicture.asset(
+                    'assets/icons/complete_check.svg',
+                    colorFilter: ColorFilter.mode(
+                      AppColors.background,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),

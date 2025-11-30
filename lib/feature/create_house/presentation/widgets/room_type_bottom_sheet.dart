@@ -1,5 +1,6 @@
 import 'package:dotori/core/constants/app_colors.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
+import 'package:dotori/core/widgets/modal_bottom_sheets/blurred_bottom_sheet.dart';
 import 'package:dotori/feature/create_house/domain/entities/house_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,14 +21,9 @@ class RoomTypeBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final roomOptions = _getRoomOptions(houseType);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.r),
-          topRight: Radius.circular(20.r),
-        ),
-      ),
+    return BlurredBottomSheet(
+      backgroundColor: Colors.white,
+      radius: 20.r,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

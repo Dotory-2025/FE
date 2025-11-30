@@ -19,77 +19,90 @@ class HouseTypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(16.w),
-        decoration: BoxDecoration(
-          color: AppColors.background,
-          borderRadius: BorderRadius.circular(AppSizes.radiusMD),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xFFEBEBE9).withOpacity(0.25),
-              offset: Offset(0, 4),
-              blurRadius: 20,
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(AppSizes.radiusMD),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xFFEBEBE9).withAlpha(64),
+            offset: Offset(0, 4),
+            blurRadius: 20,
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppSizes.radiusMD),
+        child: Stack(
           children: [
-            // 상단 안내 텍스트
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(4.r),
-              ),
-              child: Text(
-                houseType.notice,
-                style: Theme.of(
-                  context,
-                ).textTheme.caption1.copyWith(color: AppColors.gray400),
-              ),
-            ),
-            SizedBox(height: 6.h),
-            // 기존 카드 내용
-            Row(
-              children: [
-                // 아이콘
-                SvgPicture.asset(
-                  _getIconPath(houseType),
-                  width: 26.w,
-                  height: 28.w,
-                ),
-                SizedBox(width: 16.w),
-                // 텍스트
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Padding(
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // 상단 안내 텍스트
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 4.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
+                    child: Text(
+                      houseType.notice,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.caption1.copyWith(color: AppColors.gray400),
+                    ),
+                  ),
+                  SizedBox(height: 6.h),
+                  // 기존 카드 내용
+                  Row(
                     children: [
-                      Text(
-                        houseType.displayName,
-                        style: Theme.of(context).textTheme.btnText.copyWith(
-                          color: houseType.iconColor,
+                      // 아이콘
+                      SvgPicture.asset(
+                        _getIconPath(houseType),
+                        width: 26.w,
+                        height: 28.w,
+                      ),
+                      SizedBox(width: 16.w),
+                      // 텍스트
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              houseType.displayName,
+                              style: Theme.of(context).textTheme.btnText
+                                  .copyWith(color: houseType.iconColor),
+                            ),
+                            Text(
+                              houseType.description,
+                              style: Theme.of(context).textTheme.caption1
+                                  .copyWith(color: AppColors.gray400),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        houseType.description,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.caption1.copyWith(color: AppColors.gray400),
+                      // 화살표 아이콘
+                      SvgPicture.asset(
+                        'assets/icons/go.svg',
+                        width: 28.w,
+                        height: 28.w,
                       ),
                     ],
                   ),
-                ),
-                // 화살표 아이콘
-                SvgPicture.asset(
-                  'assets/icons/go.svg',
-                  width: 28.w,
-                  height: 28.w,
-                ),
-              ],
+                ],
+              ),
+            ),
+            Positioned.fill(
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(onTap: onTap),
+              ),
             ),
           ],
         ),

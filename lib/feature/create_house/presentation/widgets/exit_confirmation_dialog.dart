@@ -35,19 +35,21 @@ class ExitConfirmationDialog extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(false), // 계속하기
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 14.h),
-                      decoration: BoxDecoration(
-                        color: AppColors.gray500,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Text(
-                        '계속하기',
-                        textAlign: TextAlign.center,
-                        style: context.textStyles.btnText.copyWith(
-                          color: AppColors.background,
+                  child: Material(
+                    color: AppColors.gray500,
+                    borderRadius: BorderRadius.circular(8.r),
+                    child: InkWell(
+                      onTap: () => Navigator.of(context).pop(false), // 계속하기
+                      borderRadius: BorderRadius.circular(8.r),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                        alignment: Alignment.center,
+                        child: Text(
+                          '계속하기',
+                          textAlign: TextAlign.center,
+                          style: context.textStyles.btnText.copyWith(
+                            color: AppColors.background,
+                          ),
                         ),
                       ),
                     ),
@@ -55,19 +57,21 @@ class ExitConfirmationDialog extends StatelessWidget {
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(true), // 나가기
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 14.h),
-                      decoration: BoxDecoration(
-                        color: AppColors.gray100,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Text(
-                        '나가기',
-                        textAlign: TextAlign.center,
-                        style: context.textStyles.btnText.copyWith(
-                          color: AppColors.gray500,
+                  child: Material(
+                    color: AppColors.gray100,
+                    borderRadius: BorderRadius.circular(8.r),
+                    child: InkWell(
+                      onTap: () => Navigator.of(context).pop(true), // 나가기
+                      borderRadius: BorderRadius.circular(8.r),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                        alignment: Alignment.center,
+                        child: Text(
+                          '나가기',
+                          textAlign: TextAlign.center,
+                          style: context.textStyles.btnText.copyWith(
+                            color: AppColors.gray500,
+                          ),
                         ),
                       ),
                     ),
