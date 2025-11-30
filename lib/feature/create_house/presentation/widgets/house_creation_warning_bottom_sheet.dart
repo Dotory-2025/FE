@@ -47,7 +47,7 @@ class HouseCreationWarningBottomSheet extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('🤬', style: TextStyle(fontSize: 20.sp)),
+              Image.asset('assets/icons/mad.png', width: 24.r, height: 24.r),
               SizedBox(width: 8.w),
               Expanded(
                 child: Text(
@@ -64,7 +64,7 @@ class HouseCreationWarningBottomSheet extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('😭', style: TextStyle(fontSize: 20.sp)),
+              Image.asset('assets/icons/sad.png', width: 24.r, height: 24.r),
               SizedBox(width: 8.w),
               Expanded(
                 child: Text(
