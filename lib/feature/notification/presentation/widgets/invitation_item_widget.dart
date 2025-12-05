@@ -83,6 +83,7 @@ class InvitationItemWidget extends StatelessWidget {
                       width: 89.w,
                       height: 32.h,
                       radius: 6.r,
+                      padding: EdgeInsets.zero,
                       textStyle: context.textStyles.body3.copyWith(
                         color: Colors.white,
                         fontSize: 14.sp,

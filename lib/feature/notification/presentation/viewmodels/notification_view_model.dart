@@ -58,6 +58,20 @@ class InvitationViewModel extends Notifier<InvitationUiState> {
         timeAgo: '2분 전',
         type: InvitationType.green,
       ),
+      InvitationModel(
+        id: 2,
+        title: '청연학사 1학기',
+        description: '사용자 닉네임 님이 소통 잘 되는 룸메원해요 하우스에 참가를 요청하였습니다.',
+        timeAgo: '2분 전',
+        type: InvitationType.blue,
+      ),
+      InvitationModel(
+        id: 3,
+        title: '매지학사 1학기',
+        description: '사용자 닉네임 님이 소통 잘 되는 룸메원해요 하우스에 초대했습니다.',
+        timeAgo: '2분 전',
+        type: InvitationType.orange,
+      ),
     ]);
   }
 
@@ -66,7 +80,7 @@ class InvitationViewModel extends Notifier<InvitationUiState> {
   }
 
   void setError() {
-    state = InvitationError("서비스 이용이 원활하지 않아요");
+    state = InvitationError('서비스 이용이 원활하지 않아요');
   }
 }
 
@@ -126,7 +140,7 @@ class NotificationListViewModel extends Notifier<NotificationUiState> {
   }
 
   void setError() {
-    state = NotificationError("서비스 이용이 원활하지 않아요");
+    state = NotificationError('서비스 이용이 원활하지 않아요');
   }
 }
 

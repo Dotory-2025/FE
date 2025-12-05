@@ -144,7 +144,7 @@ class NotificationScreen extends HookConsumerWidget {
                           // Empty State
                           return Center(
                             child: Text(
-                              "받은 초대가 없습니다.",
+                              '받은 초대가 없습니다.',
                               style: context.textStyles.body1.copyWith(
                                 color: AppColors.gray500,
                               ),
@@ -218,6 +218,7 @@ class NotificationScreen extends HookConsumerWidget {
                 ],
               ),
             ),
+            Container(height: 96.h, color: Colors.white),
           ],
         ),
       ),
