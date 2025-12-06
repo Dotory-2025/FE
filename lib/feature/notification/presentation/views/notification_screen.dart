@@ -1,12 +1,14 @@
 import 'package:dotori/core/constants/app_colors.dart';
+import 'package:dotori/core/constants/enums/ui_status.dart';
 import 'package:dotori/core/themes/app_text_styles.dart';
 import 'package:dotori/core/themes/text_theme_extension.dart';
 import 'package:dotori/core/widgets/app_bars/app_bar_logo.dart';
 import 'package:dotori/core/widgets/buttons/custom_elevated_button.dart';
 import 'package:dotori/core/widgets/tab_bars/custom_tab_bar.dart';
+import 'package:dotori/feature/notification/presentation/viewmodels/invitation_view_model.dart';
+import 'package:dotori/feature/notification/presentation/viewmodels/notification_view_model.dart';
 import 'package:dotori/feature/notification/presentation/widgets/invitation_item_widget.dart';
 import 'package:dotori/feature/notification/presentation/widgets/notification_item_widget.dart';
-import 'package:dotori/feature/notification/presentation/viewmodels/notification_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,8 +18,8 @@ class NotificationScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final invitationState = ref.watch(invitationProvider);
-    final notificationState = ref.watch(notificationListProvider);
+    final invitationState = ref.watch(invitationViewModelProvider);
+    final notificationState = ref.watch(notificationViewModelProvider);
 
     return DefaultTabController(
       length: 2,
@@ -37,7 +39,7 @@ class NotificationScreen extends HookConsumerWidget {
                   // Notification Tab
                   Builder(
                     builder: (context) {
-                      if (notificationState is NotificationSuccess) {
+                      if (notificationState.status == UiStatus.success) {
                         if (notificationState.notifications.isEmpty) {
                           // Empty State
                           return Column(
@@ -78,6 +80,7 @@ class NotificationScreen extends HookConsumerWidget {
                         }
                         // List State
                         return ListView.builder(
+                          padding: EdgeInsets.only(bottom: 96.h),
                           itemCount: notificationState.notifications.length,
                           itemBuilder: (context, index) {
                             final notification =
@@ -89,7 +92,7 @@ class NotificationScreen extends HookConsumerWidget {
                             );
                           },
                         );
-                      } else if (notificationState is NotificationError) {
+                      } else if (notificationState.status == UiStatus.error) {
                         // Error State
                         return Column(
                           children: [
@@ -115,12 +118,12 @@ class NotificationScreen extends HookConsumerWidget {
                                   CustomElevatedButton.secondary(
                                     text: '다시 시도',
                                     onPressed: () {
-                                      // TODO: 다시 시도 로직
                                       ref
                                           .read(
-                                            notificationListProvider.notifier,
+                                            notificationViewModelProvider
+                                                .notifier,
                                           )
-                                          .loadMockData();
+                                          .loadNotifications();
                                     },
                                     width: 145.w,
                                     height: 40.h,
@@ -132,14 +135,26 @@ class NotificationScreen extends HookConsumerWidget {
                           ],
                         );
                       }
-                      return const SizedBox.shrink();
+                      return Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 128.r,
+                              height: 128.r,
+                              color: AppColors.gray200,
+                            ),
+                            SizedBox(height: 28.h),
+                          ],
+                        ),
+                      );
                     },
                   ),
 
                   // Invitation Tab
                   Builder(
                     builder: (context) {
-                      if (invitationState is InvitationSuccess) {
+                      if (invitationState.status == UiStatus.success) {
                         if (invitationState.invitations.isEmpty) {
                           // Empty State
                           return Center(
@@ -153,6 +168,7 @@ class NotificationScreen extends HookConsumerWidget {
                         }
                         // List State
                         return ListView.builder(
+                          padding: EdgeInsets.only(bottom: 96.h),
                           itemCount: invitationState.invitations.length,
                           itemBuilder: (context, index) {
                             final invitation =
@@ -171,7 +187,7 @@ class NotificationScreen extends HookConsumerWidget {
                             );
                           },
                         );
-                      } else if (invitationState is InvitationError) {
+                      } else if (invitationState.status == UiStatus.error) {
                         // Error State
                         return Column(
                           children: [
@@ -197,10 +213,12 @@ class NotificationScreen extends HookConsumerWidget {
                                   CustomElevatedButton.secondary(
                                     text: '다시 시도',
                                     onPressed: () {
-                                      // TODO: 다시 시도 로직
                                       ref
-                                          .read(invitationProvider.notifier)
-                                          .loadMockData();
+                                          .read(
+                                            invitationViewModelProvider
+                                                .notifier,
+                                          )
+                                          .loadInvitations();
                                     },
                                     width: 145.w,
                                     height: 40.h,
@@ -212,7 +230,19 @@ class NotificationScreen extends HookConsumerWidget {
                           ],
                         );
                       }
-                      return const SizedBox.shrink();
+                      return Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 128.r,
+                              height: 128.r,
+                              color: AppColors.gray200,
+                            ),
+                            SizedBox(height: 28.h),
+                          ],
+                        ),
+                      );
                     },
                   ),
                 ],
